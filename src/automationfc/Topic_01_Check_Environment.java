@@ -1,4 +1,4 @@
-package automationfc.com;
+package automationfc;
 
 import java.util.concurrent.TimeUnit;
 
