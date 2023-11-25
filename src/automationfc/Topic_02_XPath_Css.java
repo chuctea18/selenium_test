@@ -1,17 +1,96 @@
 package automationfc;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import java.util.concurrent.TimeUnit;
 
 public class Topic_02_XPath_Css {
     WebDriver driver;
-    public static void main (String[] args) {
-        System.out.println("hello Truc");
+    @BeforeClass
+    public void beforeClass() {
+        System.setProperty("webdriver.chrome.driver", "D:\\Downloads\\chromedriver\\chromedriver.exe");
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.get("https://alada.vn/tai-khoan/dang-ky.html");
     }
     @Test
-    public void TC_01_ValidationCurrentUrl() {
+    public void TC_00_ValidationCurrentUrl() {
         String loginPageUrl = driver.getCurrentUrl();
         Assert.assertEquals(loginPageUrl, "https://demo.guru99.com/v4/");
+    }
+    @Test
+    public void TC_01_RegiterWithEmptyData() {
+        WebElement regBtn = driver.findElement(By.xpath("//form[@id='frmLogin']//button[(text()='ĐĂNG KÝ')]"));
+        regBtn.click();
+        WebElement txtFirstname_error = driver.findElement((By.xpath("//label[@id='txtFirstname-error']")));
+        Assert.assertEquals(txtFirstname_error.getText(), "Vui lòng nhập họ tên");
+        WebElement txtEmail_error = driver.findElement((By.xpath(("//label[@id='txtEmail-error']"))));
+        Assert.assertEquals(txtEmail_error.getText(), "Vui lòng nhập email");
+        WebElement txtCEmail_error = driver.findElement((By.xpath(("//label[@id='txtCEmail-error']"))));
+        Assert.assertEquals(txtCEmail_error.getText(), "Vui lòng nhập lại địa chỉ email");
+        WebElement txtPassword_error = driver.findElement((By.xpath(("//label[@id='txtPassword-error']"))));
+        Assert.assertEquals(txtPassword_error.getText(), "Vui lòng nhập mật khẩu");
+        WebElement txtCPassword_error = driver.findElement((By.xpath(("//label[@id='txtCPassword-error']"))));
+        Assert.assertEquals(txtCPassword_error.getText(), "Vui lòng nhập lại mật khẩu");
+        WebElement txtPhone_error = driver.findElement((By.xpath("//label[@id='txtPhone-error']")));
+        Assert.assertEquals(txtPhone_error.getText(),"Vui lòng nhập số điện thoại.");
+    }
+
+    @Test
+    public void TC_02_RegisterWithInvalidEmail() {
+        WebElement txtFirstnameInput = driver.findElement(By.xpath(("//input[@id='txtFirstname']")));
+        txtFirstnameInput.sendKeys("Tran Thanh Truc");
+        WebElement txtEmailInput = driver.findElement((By.xpath("//input[@id='txtEmail']")));
+        txtEmailInput.sendKeys("123@gmail@com");
+        WebElement txtCEmailInput = driver.findElement((By.xpath("//input[@id='txtCEmail']")));
+        txtCEmailInput.sendKeys("123@gmail@com");
+        WebElement txtPasswordInput = driver.findElement((By.xpath("//input[@id='txtPassword']")));
+        txtPasswordInput.sendKeys("123123");
+        WebElement txtCPasswordInput = driver.findElement((By.xpath("//input[@id='txtCPassword']")));
+        txtCPasswordInput.sendKeys("123123");
+        WebElement txtPhoneInput = driver.findElement((By.xpath("//input[@id='txtPhone']")));
+        txtPhoneInput.sendKeys("0342210903");
+        WebElement regBtn = driver.findElement(By.xpath("//form[@id='frmLogin']//button[(text()='ĐĂNG KÝ')]"));
+        regBtn.click();
+        WebElement txtEmail_error = driver.findElement((By.xpath(("//label[@id='txtEmail-error']"))));
+        Assert.assertEquals(txtEmail_error.getText(), "Vui lòng nhập email hợp lệ");
+        WebElement txtCEmail_error = driver.findElement((By.xpath(("//label[@id='txtCEmail-error']"))));
+        Assert.assertEquals(txtCEmail_error.getText(), "Email nhập lại không đúng");
+    }
+
+    @Test
+    public void TC_03_RegisterWithIncorrectConfirmEmail() {
+        WebElement txtFirstnameInput = driver.findElement(By.xpath(("//input[@id='txtFirstname']")));
+        txtFirstnameInput.sendKeys("Tran Thanh Truc");
+        WebElement txtEmailInput = driver.findElement((By.xpath("//input[@id='txtEmail']")));
+        txtEmailInput.sendKeys("123@gmail.com");
+        WebElement txtCEmailInput = driver.findElement((By.xpath("//input[@id='txtCEmail']")));
+        txtCEmailInput.sendKeys("123@gmail@com");
+        WebElement txtPasswordInput = driver.findElement((By.xpath("//input[@id='txtPassword']")));
+        txtPasswordInput.sendKeys("123123");
+        WebElement txtCPasswordInput = driver.findElement((By.xpath("//input[@id='txtCPassword']")));
+        txtCPasswordInput.sendKeys("123123");
+        WebElement txtPhoneInput = driver.findElement((By.xpath("//input[@id='txtPhone']")));
+        txtPhoneInput.sendKeys("0342210903");
+        WebElement regBtn = driver.findElement(By.xpath("//form[@id='frmLogin']//button[(text()='ĐĂNG KÝ')]"));
+        regBtn.click();
+        WebElement txtCEmail_error = driver.findElement((By.xpath(("//label[@id='txtCEmail-error']"))));
+        Assert.assertEquals(txtCEmail_error.getText(), "Email nhập lại không đúng");
+    }
+
+
+
+    @AfterClass
+    public void tearDown() throws Exception {
+        Thread.sleep(2000);
+        driver.quit();
     }
 }
