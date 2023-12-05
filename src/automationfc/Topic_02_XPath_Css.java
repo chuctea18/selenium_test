@@ -86,7 +86,73 @@ public class Topic_02_XPath_Css {
         Assert.assertEquals(txtCEmail_error.getText(), "Email nhập lại không đúng");
     }
 
+    @Test
+    public void TC_04_RegisterWithPassWord_LesserThan6Chacracters() {
+        WebElement txtFirstnameInput = driver.findElement(By.xpath(("//input[@id='txtFirstname']")));
+        txtFirstnameInput.sendKeys("Tran Thanh Truc");
+        WebElement txtEmailInput = driver.findElement((By.xpath("//input[@id='txtEmail']")));
+        txtEmailInput.sendKeys("123@gmail.com");
+        WebElement txtCEmailInput = driver.findElement((By.xpath("//input[@id='txtCEmail']")));
+        txtCEmailInput.sendKeys("123@gmail.com");
+        WebElement txtPasswordInput = driver.findElement((By.xpath("//input[@id='txtPassword']")));
+        txtPasswordInput.sendKeys("12345");
+        WebElement txtCPasswordInput = driver.findElement((By.xpath("//input[@id='txtCPassword']")));
+        txtCPasswordInput.sendKeys("12345");
+        WebElement txtPhoneInput = driver.findElement((By.xpath("//input[@id='txtPhone']")));
+        txtPhoneInput.sendKeys("0342210903");
+        WebElement regBtn = driver.findElement(By.xpath("//form[@id='frmLogin']//button[(text()='ĐĂNG KÝ')]"));
+        regBtn.click();
+        WebElement txtPassword_error = driver.findElement(By.xpath("//label[@id='txtPassword-error']"));
+        Assert.assertEquals(txtPassword_error.getText(), "Mật khẩu phải có ít nhất 6 ký tự");
+        WebElement txtCPassword_error = driver.findElement(By.xpath("//label[@id='txtCPassword-error']"));
+        Assert.assertEquals(txtCPassword_error.getText(), "Mật khẩu phải có ít nhất 6 ký tự");
+    }
 
+    @Test
+    public void TC_05_RegisterWithCorrectPassword() {
+        WebElement txtFirstnameInput = driver.findElement(By.xpath(("//input[@id='txtFirstname']")));
+        txtFirstnameInput.sendKeys("Tran Thanh Truc");
+        WebElement txtEmailInput = driver.findElement((By.xpath("//input[@id='txtEmail']")));
+        txtEmailInput.sendKeys("123@gmail.com");
+        WebElement txtCEmailInput = driver.findElement((By.xpath("//input[@id='txtCEmail']")));
+        txtCEmailInput.sendKeys("123@gmail.com");
+        WebElement txtPasswordInput = driver.findElement((By.xpath("//input[@id='txtPassword']")));
+        txtPasswordInput.sendKeys("123456");
+        WebElement txtCPasswordInput = driver.findElement((By.xpath("//input[@id='txtCPassword']")));
+        txtCPasswordInput.sendKeys("1234567");
+        WebElement txtPhoneInput = driver.findElement((By.xpath("//input[@id='txtPhone']")));
+        txtPhoneInput.sendKeys("0342210903");
+        WebElement regBtn = driver.findElement(By.xpath("//form[@id='frmLogin']//button[(text()='ĐĂNG KÝ')]"));
+        regBtn.click();
+        WebElement txtCPassword_error = driver.findElement(By.xpath("//label[@id='txtCPassword-error']"));
+        Assert.assertEquals(txtCPassword_error.getText(), "Mật khẩu bạn nhập không khớp");
+    }
+
+    @Test
+    public void TC_06_RegisterWithInvalidPhoneNumber() {
+        WebElement txtFirstnameInput = driver.findElement(By.xpath(("//input[@id='txtFirstname']")));
+        txtFirstnameInput.sendKeys("Tran Thanh Truc");
+        WebElement txtEmailInput = driver.findElement((By.xpath("//input[@id='txtEmail']")));
+        txtEmailInput.sendKeys("123@gmail.com");
+        WebElement txtCEmailInput = driver.findElement((By.xpath("//input[@id='txtCEmail']")));
+        txtCEmailInput.sendKeys("123@gmail.com");
+        WebElement txtPasswordInput = driver.findElement((By.xpath("//input[@id='txtPassword']")));
+        txtPasswordInput.sendKeys("123456");
+        WebElement txtCPasswordInput = driver.findElement((By.xpath("//input[@id='txtCPassword']")));
+        txtCPasswordInput.sendKeys("123456");
+        WebElement txtPhoneInput = driver.findElement((By.xpath("//input[@id='txtPhone']")));
+        txtPhoneInput.sendKeys("034221");
+        WebElement regBtn = driver.findElement(By.xpath("//form[@id='frmLogin']//button[(text()='ĐĂNG KÝ')]"));
+        regBtn.click();
+        WebElement txtPhone_error = driver.findElement(By.xpath("//label[@id='txtPhone-error']"));
+        Assert.assertEquals(txtPhone_error.getText(), "Số điện thoại phải từ 10-11 số.");
+        txtPhoneInput.clear();
+        txtPhoneInput.sendKeys("123456");
+        regBtn.click();
+        Assert.assertEquals(txtPhone_error.getText(), "Số điện thoại bắt đầu bằng: 09 - 03 - 012 - 016 - 018 - 019 - 088 - 03 - 05 - 07 - 08");
+
+
+    }
 
     @AfterClass
     public void tearDown() throws Exception {
