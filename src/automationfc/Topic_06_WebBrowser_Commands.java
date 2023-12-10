@@ -66,12 +66,12 @@ public class Topic_06_WebBrowser_Commands {
     public void TC_04_GetPageSourceCode() {
         WebElement myAccount_title = driver.findElement(By.xpath("//div[@class='footer']//a[@title='My Account']"));
         myAccount_title.click();
-        String loginPage_text = driver.findElement(By.xpath("//div[@class='account-login']//div[@class='page-title']//h1]")).getText();
-        Assert.assertEquals(loginPage_text, "Login or Create an Account");
+        String loginPage_text = driver.findElement(By.xpath("//div[@class='account-login']//h1[contains(text(),'Login or Create an Account')]")).getText();
+        Assert.assertEquals(loginPage_text, "LOGIN OR CREATE AN ACCOUNT");
         WebElement createAnAccount_btn = driver.findElement(By.xpath("//form[@id='login-form']//a[@title='Create an Account']"));
         createAnAccount_btn.click();
-        String registerPage_text = driver.findElement(By.xpath("//div[@class='account-create']//div[@class='page-title']//h1]")).getText();
-        Assert.assertEquals(registerPage_text, "Create an Account");
+        String registerPage_text = driver.findElement(By.xpath("//div[@class='account-create']//h1[contains(text(),'Create an Account')]")).getText();
+        Assert.assertEquals(registerPage_text, "CREATE AN ACCOUNT");
     }
 
     @AfterTest
