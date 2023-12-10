@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class Topic_06_WebBrowse_WebElement_Commands {
+public class Topic_06_WebBrowser_Commands {
     WebDriver driver;
     @BeforeTest
     public void beforeClass() {
@@ -60,6 +60,18 @@ public class Topic_06_WebBrowse_WebElement_Commands {
         driver.navigate().forward();
         String registerPage_title = driver.getTitle();
         Assert.assertEquals(registerPage_title, "Create New Customer Account");
+    }
+
+    @Test
+    public void TC_04_GetPageSourceCode() {
+        WebElement myAccount_title = driver.findElement(By.xpath("//div[@class='footer']//a[@title='My Account']"));
+        myAccount_title.click();
+        String loginPage_text = driver.findElement(By.xpath("//div[@class='account-login']//div[@class='page-title']//h1]")).getText();
+        Assert.assertEquals(loginPage_text, "Login or Create an Account");
+        WebElement createAnAccount_btn = driver.findElement(By.xpath("//form[@id='login-form']//a[@title='Create an Account']"));
+        createAnAccount_btn.click();
+        String registerPage_text = driver.findElement(By.xpath("//div[@class='account-create']//div[@class='page-title']//h1]")).getText();
+        Assert.assertEquals(registerPage_text, "Create an Account");
     }
 
     @AfterTest
