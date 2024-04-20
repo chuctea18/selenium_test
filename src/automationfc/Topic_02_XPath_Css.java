@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -15,14 +16,15 @@ public class Topic_02_XPath_Css {
     WebDriver driver;
     @BeforeClass
     public void beforeClass() {
-        System.setProperty("webdriver.chrome.driver", "D:\\Downloads\\chromedriver\\chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        driver.get("https://alada.vn/tai-khoan/dang-ky.html");
+//        System.setProperty("webdriver.chrome.driver", "D:\\Downloads\\chromedriver\\chromedriver.exe");
+//        driver = new ChromeDriver();
+//        driver.manage().window().maximize();
+//        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+//        driver.get("https://alada.vn/tai-khoan/dang-ky.html");
     }
     @Test
     public void TC_00_ValidationCurrentUrl() {
+        driver = new ChromeDriver();
         String loginPageUrl = driver.getCurrentUrl();
         Assert.assertEquals(loginPageUrl, "https://demo.guru99.com/v4/");
     }

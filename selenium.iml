@@ -20,8 +20,25 @@
           <root url="jar://$MODULE_DIR$/lib/selenium-server-standalone-2.53.1.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/sourceDocs/selenium-api-4.16.1-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/sourceDocs/selenium-chrome-driver-4.16.1-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/sourceDocs/selenium-chromium-driver-4.16.1-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/sourceDocs/selenium-devtools-v85-4.16.1-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/sourceDocs/selenium-edge-driver-4.16.1-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/sourceDocs/selenium-firefox-driver-4.16.1-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/sourceDocs/selenium-grid-4.16.1-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/sourceDocs/selenium-http-4.16.1-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/sourceDocs/selenium-ie-driver-4.16.1-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/sourceDocs/selenium-json-4.16.1-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/sourceDocs/selenium-manager-4.16.1-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/sourceDocs/selenium-os-4.16.1-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/sourceDocs/selenium-remote-driver-4.16.1-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/sourceDocs/selenium-safari-driver-4.16.1-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/sourceDocs/selenium-support-4.16.1-sources.jar!/" />
+        </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="library" exported="" name="selenium-server-4.16.1" level="project" />
   </component>
 </module>
